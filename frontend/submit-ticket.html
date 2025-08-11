@@ -76,7 +76,7 @@
       <form class="form-container">
         <!-- Left Column -->
         <div class="form-group">
-          <label class="form-label" for="email">
+          <label class="form-label">
             Email Address <span class="required">*</span>
           </label>
           <input
@@ -84,12 +84,11 @@
             class="form-input"
             placeholder="Enter a valid email address ..."
             required
-            id="email"
           />
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="title">
+          <label class="form-label">
             Title <span class="required">*</span>
           </label>
           <input
@@ -97,15 +96,14 @@
             class="form-input"
             placeholder="Enter a clear title here ..."
             required
-            id="title"
           />
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="category">
+          <label class="form-label">
             Category <span class="required">*</span>
           </label>
-          <select class="form-select" required id="category">
+          <select class="form-select" required>
             <option value="">Select category</option>
             <option value="technical">Technical Issue</option>
             <option value="billing">Billing Question</option>
@@ -117,14 +115,13 @@
 
         <!-- Right Column -->
         <div class="form-group right-column">
-          <label class="form-label" for="description">
+          <label class="form-label">
             Description <span class="required">*</span>
           </label>
           <textarea
             class="form-textarea"
             placeholder="Please elaborate the issue ...."
             required
-            id="description"
           ></textarea>
         </div>
 
@@ -138,7 +135,7 @@
     <!-- Success Modal -->
     <div class="modal" id="successModal">
       <div class="modal-content">
-        <h2 id="ticketMessage">Ticket Submitted Successfully!</h2>
+        <h2>Ticket Submitted Successfully!</h2>
         <div class="check-icon">
           <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
             <circle cx="12" cy="12" r="12" fill="#2ecc71" />
@@ -152,7 +149,7 @@
           </svg>
         </div>
 
-        <p>Ticket ID: <span id="ticketID"></span></p>
+        <p>Ticket ID: <span id="ticketId">#loading</span></p>
         <button class="btn btn-submit" onclick="closeModal()">OK</button>
       </div>
     </div>

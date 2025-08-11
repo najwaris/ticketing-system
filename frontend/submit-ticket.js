@@ -1,49 +1,32 @@
+// Generate random ticket ID
+function generateTicketID() {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let id = "#";
+  for (let i = 0; i < 8; i++) {
+    id += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return id;
+}
+
 // Form submission
-document.querySelector("form").addEventListener("submit", async function (e) {
+document.querySelector("form").addEventListener("submit", function (e) {
   e.preventDefault();
 
   // Get form values
-  const email = document.getElementById("email").value;
-  const title = document.getElementById("title").value;
-  const category = document.getElementById("category").value;
-  const description = document.getElementById("description").value;
+  const email = this.querySelector('input[type="email"]').value;
+  const title = this.querySelector('input[type="text"]').value;
+  const category = this.querySelector("select").value;
+  const description = this.querySelector("textarea").value;
 
   if (!email || !title || !category || !description) {
     alert("Please fill in all required fields.");
     return;
   }
 
-  try {
-    const response = await fetch(
-      "https://capstone-func-app.azurewebsites.net/api/submitTicket?code=SixosvvN9b04e8L8w_pLZZ4lr_z5udiNFP3Ov13luUNaAzFuzQtwcQ==",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          title: title,
-          category: category,
-          description: description,
-        }),
-      }
-    );
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(errorText || response.statusText);
-    }
-
-    const data = await response.json();
-    document.getElementById("ticketMessage").textContent = data.message;
-    document.getElementById("ticketID").textContent = data.ticket_id;
-    document.getElementById("successModal").style.display = "flex";
-  } catch (error) {
-    document.getElementById("ticketMessage").textContent =
-      error.message || String(error);
-    document.getElementById("successModal").style.display = "flex";
-  }
+  // Show modal with ticket ID
+  const ticketId = generateTicketID();
+  document.getElementById("ticketId").innerText = ticketId;
+  document.getElementById("successModal").style.display = "flex";
 });
 
 // Cancel button
