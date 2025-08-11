@@ -38,12 +38,11 @@ document.querySelector("form").addEventListener("submit", async function (e) {
     const data = await response.json();
     document.getElementById("ticketMessage").textContent = data.message;
     document.getElementById("ticketID").textContent = data.ticket_id;
-    document.getElementById("successModal").style.display = "flex";
   } catch (error) {
     document.getElementById("ticketMessage").textContent =
       error.message || String(error);
-    document.getElementById("successModal").style.display = "flex";
   }
+  document.getElementById("successModal").style.display = "flex";
 });
 
 // Cancel button
