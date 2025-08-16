@@ -286,11 +286,29 @@ function printTicket() {
           border-bottom: 1px solid #eee;
         }
         
+        /* Target the container holding the title and description */
+        #ticket-container {
+          margin: 0;
+          padding: 0;
+        }
+
+        /* Remove spacing after the title */
+        #ticket-container h1 {
+          margin-bottom: 0; /* Removes space below the title */
+        }
+
+        /* Tighten the description text */
         .ticket-description {
-          white-space: pre-line;
-          line-height: 1.8;
-          font-size: 1rem;
-          color: #444;
+          margin-top: 0;  /* No gap after the title */
+          padding-top: 0; /* No extra padding */
+          text-align: left;
+          line-height: 1.4; /* Tighter line spacing */
+        }
+
+        /* Remove paragraph margins if used */
+        .ticket-description p {
+          margin: 0;
+          padding: 0;
         }
         
         .ticket-footer {
