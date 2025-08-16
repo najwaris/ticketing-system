@@ -15,7 +15,7 @@ document.querySelector("form").addEventListener("submit", async function (e) {
 
   try {
     const response = await fetch(
-      "https://capstone-func-app.azurewebsites.net/api/submitTicket?code=SixosvvN9b04e8L8w_pLZZ4lr_z5udiNFP3Ov13luUNaAzFuzQtwcQ==",
+      "https://capstone-func-app.azurewebsites.net/api/submitTicket?",
       {
         method: "POST",
         headers: {
@@ -23,7 +23,7 @@ document.querySelector("form").addEventListener("submit", async function (e) {
         },
         body: JSON.stringify({
           email: email,
-          title: title,
+          subject: title,
           category: category,
           description: description,
         }),
