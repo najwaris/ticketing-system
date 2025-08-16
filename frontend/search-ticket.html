@@ -15,55 +15,29 @@
     <div class="main-content">
       <h1 class="page-title">Search A Ticket</h1>
 
-      <div class="search-container">
+      <!-- Search Form -->
+      <form id="viewTicketForm" class="search-container">
         <div class="search-input-wrapper">
           <div class="search-icon"></div>
           <input
-            type="text"
+            type="email"
             class="search-input"
-            placeholder="Search by ticket ID or keywords..."
-            id="ticketSearch"
+            placeholder="Enter your email..."
+            id="emailInput"
+            required
           />
         </div>
-        <button type="button" class="search-btn" onclick="searchTicket()">
+        <button type="submit" class="search-btn">
           Search Ticket
         </button>
-      </div>
+      </form>
 
-      <!-- Ticket List -->
-      <div class="ticket-list" id="ticketList">
-        <!-- Tickets will be added here dynamically -->
+      <!-- Ticket Results -->
+      <div class="ticket-list" id="ticketResults">
+        <!-- Tickets will be shown here -->
       </div>
     </div>
 
-    <!-- Ticket Details Modal -->
-    <!-- <div class="modal" id="ticketModal">
-      <div class="modal-content">
-        <span class="close-modal" onclick="closeModal()">&times;</span>
-        <div class="modal-ticket-id" id="modalTicketId">
-          Ticket ID: scfjj38ry47ldsfj9
-        </div>
-        <div class="modal-ticket-category" id="modalTicketCategory">
-          Internal Connectivity
-        </div>
-        <div class="modal-ticket-title" id="modalTicketTitle">
-          Slow Internet Connection @ KBH
-        </div>
-        <div class="modal-ticket-description" id="modalTicketDescription">
-          Users in the KBH building are experiencing significantly slower than
-          usual internet speeds, affecting productivity. The issue appears to be
-          intermittent, with speeds dropping particularly during peak hours
-          (10AM-2PM). Initial diagnostics show packet loss when pinging the main
-          gateway. This issue affects both wired and wireless connections across
-          all floors. IT team has been notified and is currently investigating
-          possible bandwidth throttling or hardware malfunctions.
-        </div>
-        <div class="modal-ticket-status in-progress" id="modalTicketStatus">
-          In Progress
-        </div>
-        <div class="print-icon" onclick="window.print()"></div>
-      </div>
-    </div> -->
     <script src="search-ticket.js"></script>
   </body>
 </html>
