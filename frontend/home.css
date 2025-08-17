@@ -15,6 +15,32 @@ body {
   padding: 0;
 }
 
+.navbar {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  padding: 10px;
+}
+
+.logoutBtn {
+  font-size: large;
+  padding: 12px 20px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(135deg, #361f7c, #dc4deb);
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.logoutBtn:hover {
+  background: linear-gradient(135deg, #dc4deb, #361f7c);
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+
 .container {
   display: flex;
   gap: 60px;

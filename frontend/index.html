@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuickAid Login</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="login-card">
+      <!-- Branding -->
+      <div class="logo">
+        <span class="logo-icon">💡</span>
+        <h1 class="system-name">QuickAid</h1>
+      </div>
+      <p class="system-tagline">Your Helpdesk for Technical Support</p>
+
+      <!-- Titles -->
+      <h2 class="login-title">Welcome Back</h2>
+      <p class="login-subtitle">Sign in to submit or track your tickets</p>
+
+      <!-- Microsoft Button -->
+      <button class="loginBtn" id="loginBtn">
+        <img
+          src="https://img.icons8.com/color/24/microsoft.png"
+          alt="Microsoft logo"
+        />
+        Sign in with Microsoft
+      </button>
+      <script src="https://alcdn.msauth.net/browser/2.38.0/js/msal-browser.min.js"></script>
+      <script src="auth.js"></script>
+      <div class="login-container"></div>
+    </div>
+  </body>
+</html>
