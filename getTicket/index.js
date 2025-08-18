@@ -9,32 +9,32 @@ app.http('getTicket', {
     const key = process.env.COSMOS_KEY;
 
     const client = new CosmosClient({ endpoint, key });
-    const container = client.database("QuickAidDB").container("Tickets");
+    const container = client.database('QuickAidDB').container('Tickets');
 
-    const email = request.query.get('email');
-
-    let query;
-
-    if (email) {
-      query = {
-        query: "SELECT * FROM Tickets t WHERE t.email = @email",
-        parameters: [{ name: "@email", value: email }]
-      };
-    } else {
-      query = { query: "SELECT * FROM Tickets t" };
-    }
+    const id = request.query.get('id');   // ← use ticket id instead of email
 
     try {
-      const { resources: results } = await container.items.query(query).fetchAll();
-      return {
-        status: 200,
-        jsonBody: results
-      };
+      if (id) {
+        // Query by id (works regardless of partition key)
+        const query = {
+          query: 'SELECT * FROM c WHERE c.id = @id',
+          parameters: [{ name: '@id', value: id }]
+        };
+        const { resources } = await container.items.query(query).fetchAll();
+
+        if (!resources || resources.length === 0) {
+          return { status: 404, jsonBody: { error: 'Ticket not found', id } };
+        }
+        // If multiple somehow match, return the first (ids should be unique)
+        return { status: 200, jsonBody: resources[0] };
+      }
+
+      // No id provided → return all (optional; remove if you want to force id)
+      const { resources: all } = await container.items.query('SELECT * FROM c').fetchAll();
+      return { status: 200, jsonBody: all };
+
     } catch (err) {
-      return {
-        status: 500,
-        body: `Error: ${err.message}`
-      };
+      return { status: 500, jsonBody: { error: err.message } };
     }
   }
 });
