@@ -92,7 +92,7 @@ function showTicketModal(ticket) {
       <div class="ticket-id-badge">
         <span class="id-label">Ticket ID:</span>
         <span class="id-value">#${ticket.id
-          .substring(0, 8)
+          .substring(0, 36)
           .toUpperCase()}</span>
       </div>
       
@@ -165,12 +165,11 @@ window.addEventListener("click", function (event) {
 });
 
 function printTicket() {
-  const modalContent = document.querySelector('.modal-content').cloneNode(true);
-  modalContent.querySelector('.print-icon')?.remove();
+  const modalContent = document.querySelector(".modal-content").cloneNode(true);
+  modalContent.querySelector(".print-icon")?.remove();
 
-  
-  const printWindow = window.open('', '', 'width=800,height=600');
-  
+  const printWindow = window.open("", "", "width=800,height=600");
+
   printWindow.document.write(`
     <!DOCTYPE html>
     <html>
@@ -360,35 +359,58 @@ function printTicket() {
         <div class="ticket-meta">
           <div class="meta-group">
             <span class="meta-label">Ticket ID</span>
-            <span class="meta-value ticket-id">${modalContent.querySelector('.id-value')?.textContent || 'N/A'}</span>
+            <span class="meta-value ticket-id">${
+              modalContent.querySelector(".id-value")?.textContent || "N/A"
+            }</span>
           </div>
           <div class="meta-group">
             <span class="meta-label">Category</span>
-            <span class="meta-value">${modalContent.querySelector('.category-badge')?.textContent || 'General'}</span>
+            <span class="meta-value">${
+              modalContent.querySelector(".category-badge")?.textContent ||
+              "General"
+            }</span>
           </div>
           <div class="meta-group">
             <span class="meta-label">Status</span>
-            <span class="meta-value status-badge status-${modalContent.querySelector('.status-badge')?.classList[1] || 'unknown'}">
-              ${modalContent.querySelector('.status-badge')?.textContent || 'Unknown'}
+            <span class="meta-value status-badge status-${
+              modalContent.querySelector(".status-badge")?.classList[1] ||
+              "unknown"
+            }">
+              ${
+                modalContent.querySelector(".status-badge")?.textContent ||
+                "Unknown"
+              }
             </span>
           </div>
         </div>
         
         <div class="ticket-content">
-          <h2 class="ticket-subject">${modalContent.querySelector('.ticket-subject')?.textContent || 'No Subject'}</h2>
+          <h2 class="ticket-subject">${
+            modalContent.querySelector(".ticket-subject")?.textContent ||
+            "No Subject"
+          }</h2>
           <div class="ticket-description">
-            ${modalContent.querySelector('.ticket-description')?.innerHTML || 'No description provided'}
+            ${
+              modalContent.querySelector(".ticket-description")?.innerHTML ||
+              "No description provided"
+            }
           </div>
         </div>
         
         <div class="ticket-footer">
           <div class="footer-item">
             <span class="footer-icon">✉️</span>
-            <span>${modalContent.querySelector('.ticket-meta')?.children[0]?.textContent || 'No email provided'}</span>
+            <span>${
+              modalContent.querySelector(".ticket-meta")?.children[0]
+                ?.textContent || "No email provided"
+            }</span>
           </div>
           <div class="footer-item">
             <span class="footer-icon">📅</span>
-            <span>${modalContent.querySelector('.ticket-meta')?.children[1]?.textContent || 'Date unknown'}</span>
+            <span>${
+              modalContent.querySelector(".ticket-meta")?.children[1]
+                ?.textContent || "Date unknown"
+            }</span>
           </div>
         </div>
         
@@ -399,9 +421,9 @@ function printTicket() {
   `);
 
   printWindow.document.close();
-  
+
   // Ensure fonts are loaded before printing
-  printWindow.onload = function() {
+  printWindow.onload = function () {
     setTimeout(() => {
       printWindow.print();
       printWindow.close();
