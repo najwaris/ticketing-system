@@ -54,6 +54,26 @@ document.querySelector(".btn-cancel").addEventListener("click", function () {
   }
 });
 
+function copyText() {
+  var copyText = document.getElementById("ticketID").textContent;
+  navigator.clipboard
+    .writeText(copyText)
+    .then(() => {
+      showToast();
+    })
+    .catch((error) => {
+      console.error("Failed to copy", error);
+    });
+}
+
+function showToast() {
+  const toast = document.getElementById("toast");
+  toast.className = "show";
+  setTimeout(() => {
+    toast.className = toast.className.replace("show", "");
+  }, 2000);
+}
+
 // Close modal
 function closeModal() {
   document.getElementById("successModal").style.display = "none";

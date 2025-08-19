@@ -64,7 +64,7 @@ document
         <div class="ticket-card" data-ticket="${JSON.stringify(ticket)}">
           <div class="ticket-header">
             <span class="ticket-id">
-              Ticket ID: #${ticket.id.substring(0, 8).toUpperCase()}
+              Ticket ID: #${ticket.id.substring(0, 36).toUpperCase()}
             </span>
             <div class="ticket-category">${ticket.category || "General"}</div>
           </div>
@@ -84,7 +84,6 @@ document
             >
               ${ticket.status || "Status unknown"}
             </span>
-            <div class="ticket-category">${ticket.category || "General"}</div>
           </div>
         </div>
       `;

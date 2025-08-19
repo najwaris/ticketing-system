@@ -152,7 +152,13 @@
           </svg>
         </div>
 
-        <p>Ticket ID: <span id="ticketID"></span></p>
+        <p>
+          Ticket ID: <span id="ticketID"></span>
+          <button onclick="copyText()">Copy</button>
+        </p>
+
+        <div id="toast">Copied to clipboard!</div>
+
         <button class="btn btn-submit" onclick="closeModal()">OK</button>
       </div>
     </div>

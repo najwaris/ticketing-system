@@ -88,6 +88,10 @@ body {
   font-size: 14px;
   color: #666666;
   font-weight: bold;
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .ticket-card:hover {
