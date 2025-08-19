@@ -42,7 +42,7 @@ if (handleLogout) {
   handleLogout.onclick = async () => {
     localStorage.removeItem("isAuthenticated");
     await msalInstance.logoutRedirect({
-      postLogoutRedirectUri: window.location.origin + "/frontend/index.html",
+      postLogoutRedirectUri: window.location.origin + "/index.html",
       account: msalInstance.getActiveAccount(),
     });
   };
