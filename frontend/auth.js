@@ -23,7 +23,7 @@ msalInstance.handleRedirectPromise().then((response) => {
       window.location.pathname.endsWith("home.html") &&
       !localStorage.getItem("isAuthenticated")
     ) {
-      window.location.href = window.location.origin + "/frontend/index.html";
+      window.location.href = window.location.origin + "/index.html";
     }
   }
 });
