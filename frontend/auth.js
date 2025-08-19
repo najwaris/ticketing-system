@@ -43,7 +43,7 @@ if (handleLogout) {
     localStorage.removeItem("isAuthenticated");
     await msalInstance.logoutRedirect({
       postLogoutRedirectUri: window.location.origin + "/index.html",
-      account: msalInstance.getActiveAccount(),
+      // account: msalInstance.getActiveAccount(),
     });
   };
 }
