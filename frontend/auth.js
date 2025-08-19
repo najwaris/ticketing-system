@@ -1,6 +1,7 @@
 const msalConfig = {
   auth: {
-    clientId: "506c4789-8d9b-402d-9507-37561ea5c9d7",
+    // clientId: "506c4789-8d9b-402d-9507-37561ea5c9d7", //najwa's tenant
+    clientId: "450ba4f8-551c-47cd-b01e-720e5dfdb776", //taufik's tenant
     authority: "https://login.microsoftonline.com/common",
     redirectUri: "http://localhost:5501/frontend/home.html",
   },

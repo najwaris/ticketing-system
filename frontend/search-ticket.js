@@ -3,66 +3,104 @@ document
   .addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const email = document.getElementById("emailInput").value;
+    const id = document.getElementById("idInput").value;
     const resultsDiv = document.getElementById("ticketResults");
     resultsDiv.innerHTML = "Searching...";
 
     try {
       const response = await fetch(
-        `https://capstone-func-app.azurewebsites.net/api/getTicket?email=${encodeURIComponent(
-          email
-        )}`
+        `https://capstone-func-app.azurewebsites.net/api/getTicket?id=${id}`
       );
 
       if (!response.ok) {
         throw new Error("Error fetching ticket(s).");
       }
 
-      const data = await response.json();
+      const ticket = await response.json();
 
-      if (data.length === 0) {
-        resultsDiv.innerHTML = `<p>No tickets found for ${email}</p>`;
+      // if (data.length === 0) {
+      //   resultsDiv.innerHTML = `<p>No tickets found for ${id}</p>`;
+      //   return;
+      // }
+
+      if (!ticket || !ticket.id) {
+        resultsDiv.innerHTML = `<p>No ticket found for ${id}</p>`;
         return;
       }
 
-      // Show tickets with click handlers
-      resultsDiv.innerHTML = data
-        .map(
-          (ticket) => `
-      <div class="ticket-card" data-ticket='${JSON.stringify(ticket)}'>
-        <div class="ticket-header">
-          <span class="ticket-id">Ticket ID: #${ticket.id
-            .substring(0, 8)
-            .toUpperCase()}</span>
-          <div class="ticket-category">${ticket.category || "General"}</div>
-        </div>
-        
-        <div class="ticket-content">
-          <h2 class="ticket-subject">${ticket.subject || "No Subject"}</h2>
-          <div class="ticket-description">
-            <p>${ticket.description || "No description provided"}</p>
+      //  Show tickets with click handlers
+      // resultsDiv.innerHTML = data
+      //   .map(
+      //     (ticket) => `
+      //    <div class="ticket-card" data-ticket='${JSON.stringify(ticket)}'>
+      //      <div class="ticket-header">
+      //        <span class="ticket-id">Ticket ID: #${ticket.id
+      //          .substring(0, 8)
+      //          .toUpperCase()}</span>
+      //        <div class="ticket-category">${ticket.category || "General"}</div>
+      //      </div>
+
+      //      <div class="ticket-content">
+      //        <h2 class="ticket-subject">${ticket.subject || "No Subject"}</h2>
+      //        <div class="ticket-description">
+      //          <p>${ticket.description || "No description provided"}</p>
+      //        </div>
+      //      </div>
+
+      //      <div class="ticket-footer">
+      //        <span class="ticket-status ${(ticket.status || "")
+      //          .toLowerCase()
+      //          .replace(" ", "-")}">
+      //          ${ticket.status || "Status unknown"}
+      //        </span>
+      //        <div class="ticket-category">${ticket.category || "General"}</div>
+      //      </div>
+      //    </div>
+      //  `
+      //   )
+      //   .join("");
+
+      resultsDiv.innerHTML = `
+        <div class="ticket-card" data-ticket="${JSON.stringify(ticket)}">
+          <div class="ticket-header">
+            <span class="ticket-id">
+              Ticket ID: #${ticket.id.substring(0, 8).toUpperCase()}
+            </span>
+            <div class="ticket-category">${ticket.category || "General"}</div>
+          </div>
+
+          <div class="ticket-content">
+            <h2 class="ticket-subject">${ticket.subject || "No Subject"}</h2>
+            <div class="ticket-description">
+              <p>${ticket.description || "No description provided"}</p>
+            </div>
+          </div>
+
+          <div class="ticket-footer">
+            <span
+              class="ticket-status ${(ticket.status || "")
+                .toLowerCase()
+                .replace(" ", "-")}"
+            >
+              ${ticket.status || "Status unknown"}
+            </span>
+            <div class="ticket-category">${ticket.category || "General"}</div>
           </div>
         </div>
-        
-        <div class="ticket-footer">
-          <span class="ticket-status ${(ticket.status || "")
-            .toLowerCase()
-            .replace(" ", "-")}">
-            ${ticket.status || "Status unknown"}
-          </span>
-        </div>
-      </div>
-    `
-        )
-        .join("");
+      `;
 
       // Add click handlers to each ticket card
-      document.querySelectorAll(".ticket-card").forEach((card) => {
-        card.addEventListener("click", function () {
-          const ticket = JSON.parse(this.getAttribute("data-ticket"));
+      // document.querySelectorAll(".ticket-card").forEach((card) => {
+      //   card.addEventListener("click", function () {
+      //     const ticket = JSON.parse(this.getAttribute("data-ticket"));
+      //     showTicketModal(ticket);
+      //   });
+      // });
+      document
+        .querySelector(".ticket-card")
+        .addEventListener("click", function () {
           showTicketModal(ticket);
         });
-      });
     } catch (err) {
       resultsDiv.innerHTML = `<p style="color:red;">${err.message}</p>`;
     }
